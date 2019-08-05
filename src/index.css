@@ -19,10 +19,14 @@ code {
   margin: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .app-getUsername {
-  margin: 50px;
+  margin: 50px auto;
+}
+
+.app-userInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
