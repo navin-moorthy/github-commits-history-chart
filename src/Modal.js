@@ -29,21 +29,21 @@ const Modal = ({ chartData, showModal, closeModal }) => {
                 <button
                   onClick={() => setCurrentPage(currentPage - 1)}
                   disabled={currentPage === 0}
-                  className="modal-buttons modal-buttons__green"
+                  className="app-buttons modal-buttons__green"
                 >
                   Prev
                 </button>
                 <button
                   onClick={() => setCurrentPage(currentPage + 1)}
                   disabled={currentPage === 5}
-                  className="modal-buttons modal-buttons__blue"
+                  className="app-buttons modal-buttons__blue"
                 >
                   Next
                 </button>
               </div>
               <button
                 onClick={closeModal}
-                className="modal-buttons modal-buttons__red"
+                className="app-buttons modal-buttons__red"
               >
                 Close
               </button>

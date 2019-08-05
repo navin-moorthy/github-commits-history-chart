@@ -62,6 +62,8 @@ const App = () => {
 
   return (
     <div className="app">
+      <h2 className="app-title">GitHub Commits History Chart</h2>
+      <h5>Get your weekly commit count on all public repos</h5>
       <UserSearch
         searchName={searchName}
         handleChange={handleChange}

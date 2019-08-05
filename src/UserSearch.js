@@ -2,17 +2,20 @@ import React from "react";
 
 const UserSearch = ({ searchName, handleChange, handleSubmit }) => {
   return (
-    <form className="app-getUsername" onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          name="username"
-          value={searchName}
-          onChange={handleChange}
-        />
-      </label>
-      <input type="submit" value="Submit" />
+    <form className="app-formGroup" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="username"
+        value={searchName}
+        onChange={handleChange}
+        placeholder="Search for the Username"
+      />
+      <button
+        disabled={searchName === ""}
+        className="app-buttons formGroup__white"
+      >
+        Submit{" "}
+      </button>
     </form>
   );
 };
