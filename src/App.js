@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Chart from "react-google-charts";
+
+// Components
+import Modal from "./Modal";
+import UserSearch from "./UserSearch";
 
 const App = () => {
   const [searchName, setSearchName] = useState("");
@@ -8,8 +11,7 @@ const App = () => {
   const [publicRepoCount, setpublicRepoCount] = useState(0);
   const [publicRepos, setpublicRepos] = useState([]);
   const [chartData, setChartData] = useState([]);
-  const [displayModal, setdisplayModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = event => {
     setSearchName(event.target.value);
@@ -51,23 +53,20 @@ const App = () => {
       chartData.push(splitChartData);
     }
     setChartData(chartData);
-    setdisplayModal(true);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
     <div className="app">
-      <form className="app-getUsername" onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={searchName}
-            onChange={handleChange}
-          />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <UserSearch
+        searchName={searchName}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
       {userName && (
         <div className="app-userInfo">
           <div>{userName}</div>
@@ -81,37 +80,11 @@ const App = () => {
           </li>
         ))}
       </ul>
-      {displayModal && (
-        <div>
-          <Chart
-            width={"500px"}
-            height={"300px"}
-            chartType="Bar"
-            loader={<div>Loading Chart</div>}
-            data={chartData[currentPage]}
-            options={{
-              chart: {
-                title: "Commit Frequecy",
-                subtitle: "Commits trend for last 52 weeks"
-              }
-            }}
-            // For tests
-            rootProps={{ "data-testid": "2" }}
-          />
-          <button
-            onClick={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage === 0}
-          >
-            Prev
-          </button>
-          <button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={currentPage === 5}
-          >
-            Next
-          </button>
-        </div>
-      )}
+      <Modal
+        chartData={chartData}
+        showModal={showModal}
+        closeModal={closeModal}
+      />
     </div>
   );
 };
