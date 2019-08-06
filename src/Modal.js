@@ -4,6 +4,11 @@ import Chart from "react-google-charts";
 const Modal = ({ chartData, showModal, closeModal }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
+  const handleClose = () => {
+    setCurrentPage(0);
+    closeModal();
+  };
+
   return (
     <>
       {showModal && (
@@ -42,7 +47,7 @@ const Modal = ({ chartData, showModal, closeModal }) => {
                 </button>
               </div>
               <button
-                onClick={closeModal}
+                onClick={handleClose}
                 className="app-buttons modal-buttons__red"
               >
                 Close

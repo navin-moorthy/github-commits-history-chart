@@ -4,11 +4,13 @@ import axios from "axios";
 // Components
 import Modal from "./Modal";
 import UserSearch from "./UserSearch";
+import Bio from "./Bio";
 
 const App = () => {
   const [searchName, setSearchName] = useState("");
   const [userName, setuserName] = useState("");
-  const [publicRepoCount, setpublicRepoCount] = useState(0);
+  const [invalidUser, setInvalidUser] = useState(false);
+  const [userDetails, setUserDetails] = useState({});
   const [publicRepos, setpublicRepos] = useState([]);
   const [chartData, setChartData] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -18,17 +20,23 @@ const App = () => {
   };
 
   const handleSubmit = async event => {
-    event.preventDefault();
-    const userNameRes = await axios.get(
-      `https://api.github.com/users/${searchName}`
-    );
-    setuserName(userNameRes.data.login);
-    setpublicRepoCount(userNameRes.data.public_repos);
-    setSearchName("");
-    const publicrepoRes = await axios.get(
-      `https://api.github.com/users/${searchName}/repos`
-    );
-    setpublicRepos(publicrepoRes.data);
+    try {
+      event.preventDefault();
+      const searchNameRes = await axios.get(
+        `https://api.github.com/users/${searchName}`
+      );
+      setInvalidUser(false);
+      setuserName(searchNameRes.data.login);
+      setUserDetails(searchNameRes.data);
+      setSearchName("");
+      const publicrepoRes = await axios.get(
+        `https://api.github.com/users/${searchName}/repos`
+      );
+      setpublicRepos(publicrepoRes.data);
+    } catch (err) {
+      setInvalidUser(true);
+      setSearchName("");
+    }
   };
 
   const handleRepoClick = async event => {
@@ -62,25 +70,27 @@ const App = () => {
 
   return (
     <div className="app">
-      <h2 className="app-title">GitHub Commits History Chart</h2>
-      <h5>Get your weekly commit count on all public repos</h5>
+      <h2 className="app-title text-center">GitHub Commits History Chart</h2>
+      <h5 className="app-subTitle text-center">
+        Get weekly commit count on all public repos
+      </h5>
       <UserSearch
         searchName={searchName}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      {userName && (
-        <div className="app-userInfo">
-          <div>{userName}</div>
-          <div>{publicRepoCount}</div>
-        </div>
-      )}
+      <Bio
+        userName={userName}
+        userDetails={userDetails}
+        invalidUser={invalidUser}
+      />
       <ul>
-        {publicRepos.map(publicRepo => (
-          <li key={publicRepo.id}>
-            <span onClick={handleRepoClick}>{publicRepo.name}</span>
-          </li>
-        ))}
+        {!invalidUser &&
+          publicRepos.map(publicRepo => (
+            <li key={publicRepo.id}>
+              <span onClick={handleRepoClick}>{publicRepo.name}</span>
+            </li>
+          ))}
       </ul>
       <Modal
         chartData={chartData}

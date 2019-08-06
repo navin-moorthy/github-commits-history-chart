@@ -25,11 +25,15 @@ code {
   margin: auto;
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .app-title {
+  font-weight: 800;
   margin-bottom: 5px;
+}
+
+.app-subTitle {
+  margin-top: 5px;
 }
 
 .app-formGroup {
@@ -51,10 +55,56 @@ code {
   outline: none;
 }
 
-.app-userInfo {
+.app-bioContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  margin: 10px;
+  padding: 15px;
+  background-color: #222;
+  border-radius: 10px;
+}
+
+/* Bio */
+
+.bio-avatar {
+  width: 6rem;
+  height: 6rem;
+  box-shadow: rgba(0, 0, 0, 0.4) -5px -2px 13px 0px,
+    rgba(0, 0, 0, 0.5) 5px 4px 13px 0px;
+  border-radius: 50%;
+}
+
+.bio-body {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 50px;
+}
+
+.bio-body__name {
+  font-size: x-large;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.bio-body__username {
+  font-size: small;
+  margin-bottom: 5px;
+}
+
+.bio-body__link {
+  margin-right: 20px;
+  border-bottom: 1px dotted #ebe3e3;
+  text-decoration: none;
+  color: white;
+}
+
+.bio-warning {
+  margin: 10px;
+  text-align: center;
+  color: #ff8300;
+  font-weight: 700;
+  font-size: larger;
 }
 
 /* Modal */
@@ -132,4 +182,8 @@ code {
 .app-buttons:focus {
   background-color: rgba(0, 0, 0, 0.8);
   box-shadow: none;
+}
+
+.text-center {
+  text-align: center;
 }
