@@ -38,7 +38,7 @@ code {
 
 .app-formGroup {
   display: flex;
-  padding: 20px 0;
+  padding: 20px 10px;
   margin: auto;
   width: 400px;
   max-width: 100%;
@@ -81,6 +81,12 @@ code {
   margin: 0px 50px;
 }
 
+@media only screen and (max-width: 640px) {
+  .bio-body {
+    margin: 0px 15px;
+  }
+}
+
 .bio-body__name {
   font-size: x-large;
   font-weight: 800;
@@ -101,10 +107,30 @@ code {
 
 .bio-warning {
   margin: 10px;
-  text-align: center;
   color: #ff8300;
   font-weight: 700;
   font-size: larger;
+}
+
+/* Repo */
+.app-repoContainer {
+  list-style: none;
+  margin: 10px;
+  padding: 0;
+}
+
+.repo-list {
+  font-weight: 600;
+  padding: 15px;
+  background-color: #555;
+  margin: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.repo-list:hover {
+  background-color: #222;
 }
 
 /* Modal */
@@ -186,4 +212,8 @@ code {
 
 .text-center {
   text-align: center;
+}
+
+text {
+  fill: #000;
 }

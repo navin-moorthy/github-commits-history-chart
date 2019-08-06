@@ -5,6 +5,7 @@ import axios from "axios";
 import Modal from "./Modal";
 import UserSearch from "./UserSearch";
 import Bio from "./Bio";
+import Repo from "./Repo";
 
 const App = () => {
   const [searchName, setSearchName] = useState("");
@@ -29,10 +30,10 @@ const App = () => {
       setuserName(searchNameRes.data.login);
       setUserDetails(searchNameRes.data);
       setSearchName("");
-      const publicrepoRes = await axios.get(
+      const publicRepoRes = await axios.get(
         `https://api.github.com/users/${searchName}/repos`
       );
-      setpublicRepos(publicrepoRes.data);
+      setpublicRepos(publicRepoRes.data);
     } catch (err) {
       setInvalidUser(true);
       setSearchName("");
@@ -45,12 +46,11 @@ const App = () => {
         event.target.textContent
       }/stats/participation`
     );
-    const totalCommits = commitStatRes.data.all;
-    totalCommits.reverse();
+    const weeklyCommits = commitStatRes.data.all.reverse();
     let weekCount = 1;
     let chartData = [];
-    while (totalCommits.length > 0) {
-      const splitCommits = [...totalCommits.splice(0, 10)];
+    while (weeklyCommits.length > 0) {
+      const splitCommits = [...weeklyCommits.splice(0, 10)];
       let splitChartData = [];
       // eslint-disable-next-line
       splitCommits.forEach(data => {
@@ -84,14 +84,12 @@ const App = () => {
         userDetails={userDetails}
         invalidUser={invalidUser}
       />
-      <ul>
-        {!invalidUser &&
-          publicRepos.map(publicRepo => (
-            <li key={publicRepo.id}>
-              <span onClick={handleRepoClick}>{publicRepo.name}</span>
-            </li>
-          ))}
-      </ul>
+      <Repo
+        invalidUser={invalidUser}
+        publicRepos={publicRepos}
+        handleRepoClick={handleRepoClick}
+        userName={userName}
+      />
       <Modal
         chartData={chartData}
         showModal={showModal}

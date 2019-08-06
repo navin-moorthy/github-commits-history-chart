@@ -15,7 +15,7 @@ const Modal = ({ chartData, showModal, closeModal }) => {
         <div className="modal">
           <div className="modal-body">
             <Chart
-              width={"500px"}
+              width={"350px"}
               height={"300px"}
               chartType="Bar"
               loader={<div>Loading Chart</div>}

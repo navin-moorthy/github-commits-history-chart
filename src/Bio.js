@@ -2,6 +2,7 @@ import React from "react";
 
 const Bio = ({ userName, userDetails, invalidUser }) => {
   const { avatar_url, name, public_repos, blog, html_url } = userDetails;
+
   return (
     <>
       {!invalidUser && userName && (
@@ -34,10 +35,14 @@ const Bio = ({ userName, userDetails, invalidUser }) => {
         </div>
       )}
       {!invalidUser && userName && public_repos === 0 && (
-        <div className="bio-warning">No public repo found for this user !!</div>
+        <div className="bio-warning text-center">
+          No public repo found for this user !!
+        </div>
       )}
       {invalidUser && (
-        <div className="bio-warning">Please enter a valid username!!</div>
+        <div className="bio-warning text-center">
+          Please enter a valid username!!
+        </div>
       )}
     </>
   );
