@@ -1,11 +1,11 @@
 import React from "react";
 
-const Bio = ({ userName, userDetails, invalidUser }) => {
+const Bio = ({ userName, userDetails }) => {
   const { avatar_url, name, public_repos, blog, html_url } = userDetails;
 
   return (
     <>
-      {!invalidUser && userName && (
+      {userName && (
         <div className="app-bioContainer">
           <img src={avatar_url} alt="avatar" className="bio-avatar" />
           <div className="bio-body">
@@ -34,14 +34,9 @@ const Bio = ({ userName, userDetails, invalidUser }) => {
           </div>
         </div>
       )}
-      {!invalidUser && userName && public_repos === 0 && (
+      {userName && public_repos === 0 && (
         <div className="bio-warning text-center">
           No public repo found for this user !!
-        </div>
-      )}
-      {invalidUser && (
-        <div className="bio-warning text-center">
-          Please enter a valid username!!
         </div>
       )}
     </>

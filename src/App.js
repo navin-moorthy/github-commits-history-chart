@@ -12,7 +12,7 @@ const App = () => {
   const [userName, setuserName] = useState("");
   const [invalidUser, setInvalidUser] = useState(false);
   const [userDetails, setUserDetails] = useState({});
-  const [publicRepos, setpublicRepos] = useState([]);
+  const [publicRepos, setPublicRepos] = useState([]);
   const [chartData, setChartData] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
@@ -33,7 +33,7 @@ const App = () => {
       const publicRepoRes = await axios.get(
         `https://api.github.com/users/${searchName}/repos`
       );
-      setpublicRepos(publicRepoRes.data);
+      setPublicRepos(publicRepoRes.data);
     } catch (err) {
       setInvalidUser(true);
       setSearchName("");
@@ -79,22 +79,20 @@ const App = () => {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      <Bio
-        userName={userName}
-        userDetails={userDetails}
-        invalidUser={invalidUser}
-      />
-      <Repo
-        invalidUser={invalidUser}
-        publicRepos={publicRepos}
-        handleRepoClick={handleRepoClick}
-        userName={userName}
-      />
-      <Modal
-        chartData={chartData}
-        showModal={showModal}
-        closeModal={closeModal}
-      />
+      {invalidUser && (
+        <div className="bio-warning text-center">
+          Please enter a valid username!!
+        </div>
+      )}
+      {!invalidUser && <Bio userName={userName} userDetails={userDetails} />}
+      {!invalidUser && (
+        <Repo
+          userName={userName}
+          publicRepos={publicRepos}
+          handleRepoClick={handleRepoClick}
+        />
+      )}
+      {showModal && <Modal chartData={chartData} closeModal={closeModal} />}
     </div>
   );
 };
