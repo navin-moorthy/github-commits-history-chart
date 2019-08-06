@@ -8,6 +8,7 @@ import Bio from "./Bio";
 import Repo from "./Repo";
 
 const App = () => {
+  // States
   const [searchName, setSearchName] = useState("");
   const [userName, setuserName] = useState("");
   const [invalidUser, setInvalidUser] = useState(false);
@@ -16,10 +17,12 @@ const App = () => {
   const [chartData, setChartData] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
+  // Handle Username Input Change
   const handleChange = event => {
     setSearchName(event.target.value);
   };
 
+  // Handle Form Submit
   const handleSubmit = async event => {
     try {
       event.preventDefault();
@@ -40,6 +43,7 @@ const App = () => {
     }
   };
 
+  // Handle each repository click
   const handleRepoClick = async event => {
     const commitStatRes = await axios.get(
       `https://api.github.com/repos/${userName}/${
@@ -47,6 +51,7 @@ const App = () => {
       }/stats/participation`
     );
     const weeklyCommits = commitStatRes.data.all.reverse();
+    // Pagination Calculation
     let weekCount = 1;
     let chartData = [];
     while (weeklyCommits.length > 0) {
@@ -64,6 +69,7 @@ const App = () => {
     setShowModal(true);
   };
 
+  // Handle Modal Close
   const closeModal = () => {
     setShowModal(false);
   };
