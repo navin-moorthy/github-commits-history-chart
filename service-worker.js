@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://navin-navi.github.io/github-commits-history-chart/precache-manifest.79ceee04715118b96ab8e0b868f72db4.js"
+  "https://navin-navi.github.io/github-commits-history-chart/precache-manifest.9dd8b955a02b8d4702c9a87399b46408.js"
 );
 
 self.addEventListener('message', (event) => {

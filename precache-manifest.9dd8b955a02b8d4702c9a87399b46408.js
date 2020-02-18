@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9a48338dcb6b0f4732fc82f18c2cade5",
+    "revision": "219caabbe734446164809fd142ca825d",
     "url": "https://navin-navi.github.io/github-commits-history-chart/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://navin-navi.github.io/github-commits-history-chart/static/css/main.76161976.chunk.css"
   },
   {
-    "revision": "72a8e560392d1ccab175",
-    "url": "https://navin-navi.github.io/github-commits-history-chart/static/js/2.de3bfb0b.chunk.js"
+    "revision": "987402e0e65b24a4d89d",
+    "url": "https://navin-navi.github.io/github-commits-history-chart/static/js/2.f6470048.chunk.js"
   },
   {
     "revision": "c1af30b01bdf24b32a9d",
